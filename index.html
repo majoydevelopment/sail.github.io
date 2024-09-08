@@ -3,145 +3,242 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Albert Lawson Open University </title>
     <style>
         body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f8ff;
+            color: #333;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-            margin: 0;
+            min-height: 100vh;
         }
-        .login-container {
-            background-color: white;
-            padding: 70px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        header {
+            background: #003366;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        header img {
+            max-width: 150px;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+        }
+        .container {
+            flex: 1;
+            width: 90%;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+        .content {
+            padding: 2rem;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
-        input {
-            display: block;
-            width: 100%;
-            margin-bottom: 10px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+        .content h1 {
+            color: #003366;
+            margin-bottom: 1rem;
         }
-        button {
-            width: 50%;
-            padding: 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+        .content p {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
         }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .logo {
-            width: 100px; /* Adjust the width as needed */
-            margin-bottom: 20px;
-        }
-        /* Modal styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0,0.4);
-            padding-top: 60px;
-        }
-        .modal-content {
-            background-color: #fefefe;
-            margin: 5% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-        }
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
+        .highlight {
+            background: #e6ffed;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 5px solid #00c851;
+            margin-top: 1.5rem;
             font-weight: bold;
         }
-        .close:hover,
-        .close:focus {
-            color: black;
+        .register-button {
+            display: inline-block;
+            background: #00c851;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 15px 30px;
+            font-size: 18px;
             text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s, transform 0.3s;
+        }
+        .register-button:hover {
+            background: #007e33;
+            transform: scale(1.05);
+        }
+        footer {
+            background: #003366;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+        .cookie-banner {
+            background: #333;
+            color: #fff;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+        .cookie-banner button {
+            background: #00c851;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 14px;
             cursor: pointer;
+        }
+        .cookie-banner button:hover {
+            background: #007e33;
+        }
+        .testimonials {
+            position: relative;
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+        .testimonial-container {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .testimonial {
+            min-width: 100%;
+            box-sizing: border-box;
+            padding: 1rem;
+            background: #ffffff;
+            border-left: 5px solid #00c851;
+            border-radius: 8px;
+            margin-right: 1rem;
+        }
+        .testimonial p {
+            margin: 0;
+            font-style: italic;
+        }
+        .carousel-button {
+            background: #003366;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            line-height: 40px;
+            text-align: center;
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+        .prev {
+            left: 10px;
+        }
+        .next {
+            right: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <!-- Add your logo here -->
-        <img src="https://i.postimg.cc/wjR4QVRz/Screenshot-2024-07-11-03-24-13-48-f7aa348215f5d566f9e4ca860f474209.png" alt="Logo" class="logo">
-        <input type="text" id="username" placeholder="Username">
-        <input type="password" id="password" placeholder="Password">
-        <button onclick="showAgreement()">Login</button>
-    </div>
-
-    <!-- Modal -->
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Legal Agreement</h2>
-            <p>This software is protected by copyright law and international treaties. Unauthorized reproduction or distribution of this software, or any portion of it, may result in severe civil and criminal penalties, and will be prosecuted to the maximum extent possible under the law.</p>
-            <p>By using this software, you agree to the following terms:</p>
-            <ul>
-                <li>You will not copy, modify, or distribute any part of the software without explicit permission from the author.</li>
-                <li>You acknowledge that this software is a proprietary product of NetLab Electronics, and you do not acquire any rights other than to use the software as specified in the license agreement.</li>
-                <li>Any breach of these terms will result in immediate termination of your right to use the software and may subject you to legal action.</li>
-            </ul>
-            <p>This software is protected by the laws of the Philippines, including but not limited to Republic Act No. 8293 (Intellectual Property Code of the Philippines) and Republic Act No. 8792 (Electronic Commerce Act of 2000).</p>
-            <button id="agreeButton">I Agree</button>
+    <header>
+        <h1>Albert Lawson Open University </h1>
+    </header>
+    <div class="container">
+        <div class="content">
+            <h1>Our Vision</h1>
+            <p>Empowering Global Minds through Free Education</p>
+            <p>Our vision is to revolutionize access to education by providing free, high-quality learning resources to individuals around the world. We strive to break down barriers to knowledge and foster an inclusive learning environment where everyone has the opportunity to achieve their full potential.</p>
+            
+            <h1>Our Mission</h1>
+            <p>Transforming Education with Accessibility and Excellence</p>
+            <p>Our mission is to deliver exceptional educational content and support without financial constraints. By leveraging innovative technology and a dedicated network of educators, we offer comprehensive learning experiences that are accessible to all. We are committed to fostering a global community of learners and educators who are united by a shared goal of advancing knowledge and personal growth.</p>
+            
+            <div class="highlight">
+                <h2>Completely Free Education</h2>
+                <p>All our resources and support are provided at no cost. We believe that quality education should be accessible to everyone, without any financial barriers.</p>
+            </div>
+            
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSecDyoBcj2X19-5RdvIySsMijSDIWPihLIzqmuNHrRgplq45w/viewform?usp=sf_link" class="register-button" target="_blank">Register Now</a>
         </div>
+
+        <!-- Testimonials Section -->
+        <div class="testimonials">
+            <div class="testimonial-container" id="testimonialContainer">
+                <div class="testimonial">
+                    <p>"This platform has been a game changer for me. The resources are top-notch and the support is fantastic." - Anonymous</p>
+                </div>
+                <div class="testimonial">
+                    <p>"I’m grateful for the opportunity to learn without any financial burden. The materials are very helpful." - Anonymous</p>
+                </div>
+                <div class="testimonial">
+                    <p>"The free education provided here is a blessing. The support team is always available to help with any questions." - Anonymous</p>
+                </div>
+                <div class="testimonial">
+                    <p>"A wonderful initiative! I've learned so much thanks to the comprehensive materials and support." - Anonymous</p>
+                </div>
+                <div class="testimonial">
+                    <p>"Highly recommended for anyone looking to learn without financial constraints. The quality is exceptional." - Anonymous</p>
+                </div>
+                <!-- Add more testimonials as needed -->
+            </div>
+            <button class="carousel-button prev" onclick="prevSlide()">&#10094;</button>
+            <button class="carousel-button next" onclick="nextSlide()">&#10095;</button>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Albert Lawson Institute of Free Education. All rights reserved.</p>
+    </footer>
+
+    <div class="cookie-banner" id="cookieBanner">
+        <p>We use cookies to ensure you get the best experience on our website.</p>
+        <button onclick="acceptCookies()">Got it!</button>
     </div>
 
     <script>
-        function showAgreement() {
-            var modal = document.getElementById("myModal");
-            var span = document.getElementsByClassName("close")[0];
-            var agreeButton = document.getElementById("agreeButton");
-
-            modal.style.display = "block";
-
-            span.onclick = function() {
-                modal.style.display = "none";
-            };
-
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            };
-
-            agreeButton.onclick = function() {
-                modal.style.display = "none";
-                login();
-            };
+        function acceptCookies() {
+            document.getElementById('cookieBanner').style.display = 'none';
+            localStorage.setItem('cookiesAccepted', 'true');
         }
 
-        function login() {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-
-            // Simple check (you should use secure methods in real applications)
-            if (username === 'netlab' && password === 'sail') {
-                window.location.href = 'main.html';
-            } else {
-                alert('Invalid credentials');
+        window.onload = function() {
+            if (localStorage.getItem('cookiesAccepted') === 'true') {
+                document.getElementById('cookieBanner').style.display = 'none';
             }
+        };
+
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.testimonial');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            const container = document.getElementById('testimonialContainer');
+            const slideWidth = slides[0].offsetWidth;
+            container.style.transform = `translateX(${-index * slideWidth}px)`;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlide);
         }
     </script>
 </body>
-</html>
+    </html>
